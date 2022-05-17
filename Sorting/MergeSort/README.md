@@ -1,3 +1,3 @@
 Complexity:
 
-        In all cases complexity O(x logn)
+        In all cases complexity O(n logn)
