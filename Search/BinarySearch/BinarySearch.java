@@ -1,12 +1,25 @@
-public class App {
+public class BinarySearch {
     public static void main(String[] args) throws Exception {
+        // (This is an example) This is the array to be verified, introduce the values you need.
         int array[] = { 1, 2, 3, 4, 5, 6, 7 };
-        int result = BinarySearch(array, 7);
+        // In the second parameter introduce the number to be searched.
+        int result = binarySearch(array, 7);
         if (result == -1)
+            // In case the function returns -1 and the element was not found
             System.out.println("Element not found");
         else
+            // In the case the element was found
             System.out.println("Element found ");
     }
+
+    /**
+     * This function sets the values for the two splited arrays from initial array
+     * 
+     * @param array
+     * @param arrayA
+     * @param arrayB
+     * @param size
+     */
 
     public static void setArrays(int array[], int arrayA[], int arrayB[], int size) {
         int x = 0;
@@ -21,7 +34,15 @@ public class App {
         }
     }
 
-    public static int BinarySearch(int array[], int number) {
+    /**
+     * This is the actual binarySearch function which finds the specified number
+     * 
+     * @param array
+     * @param number
+     * @return returns -1 or the pivot number
+     */
+
+    public static int binarySearch(int array[], int number) {
         int size = array.length;
         int pivot = size / 2;
         int arrayA[] = new int[size / 2];
@@ -34,10 +55,10 @@ public class App {
             }
 
             if (array[pivot] > number) {
-                return BinarySearch(arrayA, number);
+                return binarySearch(arrayA, number);
             }
             if (array[pivot] < number) {
-                return BinarySearch(arrayB, number);
+                return binarySearch(arrayB, number);
             } else
                 return -1;
         }
