@@ -1,1 +1,1 @@
-Time Complexity: O(log n).
+Time Complexity: O(log n) in all cases, except the case when the first pivot is the number O(1).
