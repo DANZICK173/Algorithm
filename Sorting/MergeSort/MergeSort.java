@@ -1,49 +1,54 @@
 public class MergeSort {
 
-    public static void mergeSort(int[] array, int n) {
+    public static void main(String[] args) {
+        int array[] = { 48, 24, 1, 5, 3 };
+        int[] finalArray = mergeSort(array);
+        printArray(finalArray);
+    }
 
-        if (n < 2) {
-            return;
+    public static int[] mergeSort(int[] array) {
+
+        if (array.length <= 1) {
+            return array;
         }
-        int mid = n / 2;
+        int mid = array.length / 2;
         int[] left = new int[mid];
-        int[] right = new int[n - mid];
+        int[] right = new int[array.length - mid];
 
         for (int i = 0; i < mid; i++) {
             left[i] = array[i];
         }
-        for (int i = mid; i < n; i++) {
+        for (int i = mid; i < array.length; i++) {
             right[i - mid] = array[i];
         }
-        mergeSort(left, mid);
-        mergeSort(right, n - mid);
+        left = mergeSort(left);
+        right = mergeSort(right);
 
-        merge(array, left, right, mid, n - mid);
+        return merge(left, right);
 
     }
 
-    public static void merge(int[] array, int[] leftarray, int[] rightarray, int maxleft, int maxright) {
+    public static int[] merge(int[] leftarray, int[] rightarray) {
         int i = 0;
         int j = 0;
-        int k = 0;
-        while (i < maxleft && j < maxright) {
-            if (leftarray[i] <= rightarray[j]) {
-                array[k++] = leftarray[i++];
+        int maxleft = leftarray.length;
+        int maxright = rightarray.length;
+        int[] tempArray = new int[maxleft + maxright];
+        while (i < maxleft || j < maxright) {
+            if (j == maxright || (i!=maxleft && leftarray[i] <= rightarray[j])) {
+                tempArray[i+j] = leftarray[i];
+                i++;
             } else {
-                array[k++] = rightarray[j++];
+                tempArray[i+j] = rightarray[j];
+                j++;
             }
         }
-        while (i < maxleft) {
-            array[k++] = leftarray[i++];
-        }
-        while (j < maxright) {
-            array[k++] = rightarray[j++];
-        }
+        return tempArray;
     }
 
-    public static void printArray(int array[]){
-        for(int i = 0;i<array.length;i++){
-            System.out.print(array[i]+ " ");
+    public static void printArray(int array[]) {
+        for (int i = 0; i < array.length; i++) {
+            System.out.print(array[i] + " ");
         }
     }
 
